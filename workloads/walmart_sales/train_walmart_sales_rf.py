@@ -11,6 +11,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from skl2onnx import convert_sklearn
 from onnxconverter_common import FloatTensorType, Int64TensorType, StringTensorType
+import joblib
 
 import sys
 import os
@@ -203,6 +204,7 @@ node_count = [model.estimators_[i].tree_.node_count for i in range(tree_num)]
 now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
 model_name = f"{data_name}_t{tree_num}_d{sum(depth) // tree_num}_l{sum(leaves) // tree_num}_n{sum(node_count) //tree_num}_{now}"
+joblib.dump(pipeline, f"model/{model_name}.joblib")
 onnx_path = f"model/{model_name}.onnx"
 
 # save model pred distribution
@@ -226,9 +228,6 @@ model_onnx = convert_sklearn(pipeline, initial_types=init_types)
 # optimize model
 optimized_model = onnxoptimizer.optimize(model_onnx)
 onnx.save_model(optimized_model, onnx_path)
-
-
-
 
 with open(f"/volumn/Retree_exp/queries/Retree/workloads/workload_models.csv", "a", encoding="utf-8") as f:
     f.write(f"{data_name},{model_name}\n")

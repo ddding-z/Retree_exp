@@ -27,7 +27,7 @@ struct Config
 	std::string model_type = "rf";
 	std::string scale = "1G";
 	std::string thread = "4";
-	int times = 10;
+	int times = 6;
 	int optimization_level = 3;
 	int debug = 0;
 };
@@ -164,6 +164,9 @@ void run(const Config &config)
 	}
 
 	std::string data = replacePlaceholder(read_file(sql_path + "load_data.sql"), "?", config.scale);
+	data = replacePlaceholder(data, "?", config.scale);
+	data = replacePlaceholder(data, "?", config.scale);
+	
 	std::string threads = replacePlaceholder("set threads = ?;", "?", config.thread);
 
 	con.Query(data);

@@ -1,5 +1,6 @@
 import argparse
 import datetime
+import joblib
 import numpy as np
 import onnx.checker
 import onnxoptimizer
@@ -128,8 +129,8 @@ node_count = [model.estimators_[i].tree_.node_count for i in range(tree_num)]
 now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
 model_name = f"{data_name}_t{tree_num}_d{sum(depth) // tree_num}_l{sum(leaves) // tree_num}_n{sum(node_count) //tree_num}_{now}"
+joblib.dump(pipeline, f"model/{model_name}.joblib")
 onnx_path = f"model/{model_name}.onnx"
-
 # save model pred distribution
 pred = pipeline.predict(X)
 value_distribution(pred, model_name)
