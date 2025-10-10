@@ -247,7 +247,9 @@ with open("query.sql", "r") as file:
 with open(predicates_path, "r") as file:
     predicates = [str(line.strip()) for line in file if line.strip() != ""]
 
-# load_data = load_data.replace("?", scale)
+load_data = load_data.replace("?", scale)
+load_data = load_data.replace("?", scale)
+load_data = load_data.replace("?", scale)
 duckdb.sql(f"SET threads={thread_duckdb};")
 duckdb.sql(load_data)
 

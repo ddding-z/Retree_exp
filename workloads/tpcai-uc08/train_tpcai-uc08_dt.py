@@ -100,14 +100,14 @@ type_map = {
     "object": StringTensorType([None, 1]),
 }
 init_types = [(elem, type_map[X[elem].dtype.name]) for elem in input_columns]
-# model_onnx = convert_sklearn(pipeline, initial_types=init_types)
-model_onnx = convert_sklearn(pipeline, initial_types=init_types,options={id(model): {'zipmap': False}})
+model_onnx = convert_sklearn(pipeline, initial_types=init_types)
+# model_onnx = convert_sklearn(pipeline, initial_types=init_types,options={id(model): {'zipmap': False}})
 onnx.save_model(model_onnx, onnx_path)
 
 # optimize model
 # optimized_model = onnxoptimizer.optimize(model_onnx)
 # onnx.save_model(optimized_model, onnx_path)
 
-# with open(f"/volumn/Retree_exp/queries/Retree/workloads/workload_models.csv", "a", encoding="utf-8") as f:
-#     f.write(f"tpcai-uc08,{model_name}\n")
+with open(f"/volumn/Retree_exp/queries/Retree/workloads/workload_models.csv", "a", encoding="utf-8") as f:
+    f.write(f"tpcai-uc08,{model_name}\n")
 #     # f.write(f"{data_name},{model_name}\n")

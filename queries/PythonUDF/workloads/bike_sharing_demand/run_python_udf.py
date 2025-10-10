@@ -22,7 +22,7 @@ parser.add_argument(
     type=str,
     default="bike_sharing_demand_t100_d10_l742_n1483_20250321150638",
 )
-parser.add_argument("--scale", "-s", type=str, default="1G")
+parser.add_argument("--scale", "-s", type=str, default="10G")
 parser.add_argument("--thread", "-t", type=int, default=4)
 args = parser.parse_args()
 
@@ -106,6 +106,7 @@ for predicate in predicates:
         duckdb.sql(pquery)
         end = time.time()
         timer.append(end - start)
+        # print(f"{workload},{model_name},{model_type},{predicate},{scale},{thread_duckdb},0,{i},{end - start}")
     timer.remove(min(timer))
     timer.remove(max(timer))
     average = sum(timer) / len(timer)

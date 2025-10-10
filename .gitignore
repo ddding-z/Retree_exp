@@ -56,3 +56,6 @@ micro/
 !workloads/walmart_sales/data/train.csv
 
 !workloads/wine_quality/data/wine_quality.csv
+
+*.log
+.cache/
