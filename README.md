@@ -4,26 +4,30 @@ This document outlines the experimental components of our paper *Eliminating Red
 
 ## What is ReTree
 
-ReTree is a flexible and pluggable extension implemented on top of DuckDB. It is designed to eliminate redundant feature tests in decision tree and random forest predicates. The source code is located in the `duckdb` submodule, with the core implementation primarily in `duckdb/test/extension/retree_xxx_extension.cpp`.
+ReTree is a flexible and pluggable extension built on top of DuckDB, designed to eliminate redundant feature tests in decision tree and random forest predicates. The source code resides in the [`duckdb`](https://anonymous.4open.science/r/duckdb-2DB7) submodule, with its core implementation primarily located in `duckdb/test/extension/retree_xxx_extension.cpp`. Additionally, the [onnxoptimizer](https://anonymous.4open.science/r/onnx_optimizer_C-34DE/) submodule within DuckDB also contains part of the ReTree implementation, specifically under the path `onnxoptimizer/query_c_api/retree.cpp`. 
 
 ## Experiments in Our Paper
 
 In this paper, we evaluate the performance of the ReTree prototype system through a series of experiments conducted on publicly available datasets and standard benchmark workloads, including TPC-H and TPCx-AI. The experiments include:
 
 - Efficiency of Sibling-Centric Elimination
-  - End-to-end execution time
-  - Evaluation overhead analysis
-  - Selectivity of ML predicates
-- Efficiency of Ancestor-CentricElimination
-  - End-to-end execution time
-  - Evaluation overhead analysis
-  - Impact of different sliding hyperplane types
+  - End-to-end Execution Time
+  - Evaluation Overhead Analysis
+  - Selectivity of ML Predicates
+- Efficiency of Ancestor-Centric Elimination
+  - End-to-end Execution Time
+  - Evaluation Overhead Analysis
+  - Impact of Sliding Hyperplane Types
 - Accuracy of Random Forest Predicates
-- Comparison with Alternative Approaches
+- Discussion
+  - Comparison with Alternative Approaches
+  - Scalability
+    - Query Performance on Large-scale Data
+    - Query Performance across Tree Depths
 
 ## Workloads
 
-The `workloads` directory contains eight datasets: `bike_sharing_demand`, `flights`, `medical_charges`, `nyc-taxi-green-dec-2016`, `walmart_sales`, and `wine_quality`.
+The `workloads` directory contains datasets: `bike_sharing_demand`, `flights`, `medical_charges`, `nyc-taxi-green-dec-2016`, and `walmart_sales`.
 
 In each dataset folder:
 
@@ -35,6 +39,6 @@ The `tpch-q9` and `tpcxai-uc08` directories include only model training scripts,
 
 ## Queries
 
-Each dataset directory include `common/xxx.sql` file that contain SQL statements to load the ReTree extension. The experimental prediction queries are stored in `workload/xxx/query.sql`, corresponding to the queries described in the evaluation section of our paper, as shown in the following table.
+Each dataset directory includes `common/xxx.sql` file that contains SQL statements to load the ReTree extension. The experimental prediction queries are stored in `workload/xxx/query.sql`, corresponding to the queries described in the evaluation section of our paper, as shown in the following table.
 
 ![image-20250730190742873](./readme-queries.png)
