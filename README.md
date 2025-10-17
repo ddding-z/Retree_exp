@@ -4,7 +4,8 @@ This document outlines the experimental components of our paper *Eliminating Red
 
 ## What is ReTree
 
-ReTree is a flexible and pluggable extension built on top of DuckDB, designed to eliminate redundant feature tests in decision tree and random forest predicates. The source code resides in the [`duckdb`](https://anonymous.4open.science/r/duckdb-2DB7) submodule, with its core implementation primarily located in `duckdb/test/extension/retree_xxx_extension.cpp`. Additionally, the [onnxoptimizer](https://anonymous.4open.science/r/onnx_optimizer_C-34DE/) submodule within DuckDB also contains part of the ReTree implementation, specifically under the path `onnxoptimizer/query_c_api/retree.cpp`. 
+ReTree is a flexible and pluggable extension built on top of DuckDB, designed to eliminate redundant feature tests in decision tree and random forest predicates. The source code resides in the [`duckdb`](https://anonymous.4open.science/r/duckdb-2DB7) submodule, with its core implementation primarily located in `duckdb/test/extension/retree_xxx_extension.cpp`. Additionally, the [`onnxoptimizer`](https://anonymous.4open.science/r/onnx_optimizer_C-34DE/) submodule within DuckDB also contains part of the ReTree implementation, specifically under the path `onnxoptimizer/query_c_api/retree.cpp`. 
+> Note: Both repositories are anonymously hosted on anonymous.4open.science as part of a double-blind submission. 
 
 ## Experiments in Our Paper
 
